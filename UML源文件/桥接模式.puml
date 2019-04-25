@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象化角色
+Abstract Abstraction{
+    #  implementor ：Implementor
+    # Abstraction(Implementor imple)
+    + Operation() : void
+}
+'扩展抽象化角色
+Class RefinedAbstraction{
+    # implementor : Implementor
+   # RefinedAbstraction(Implementor imple)
+    + Operation() : void
+}
+'实例化角色
+Interface Implementor{
+ + OperationImpl() : void
+}
+'具体实例化角色
+Class ConcreteImplementorA{
+ + OperationImpl() ： void
+}
+
+Class ConcreteImplementorB{
+ + OperationImpl() ： void
+}
+
+Class Client
+
+Client ..> Abstraction
+Client ..> Implementor
+
+ConcreteImplementorA ..|> Implementor
+ConcreteImplementorB..|> Implementor
+Implementor --o Abstraction
+RefinedAbstraction --|> Abstraction
+
+
+@enduml

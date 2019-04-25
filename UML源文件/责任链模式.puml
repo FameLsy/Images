@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象处理者
+Abstract Handler{
+    - next : Handler
+    + setNext(Handler next) : void
+    + getNext() : Handler
+    + HandleRequest(String request) : void
+}
+Handler --o Handler
+
+'具体处理者
+Class ConcreteHandlerA{
+   + HandleRequest(String request) : void
+}
+Class ConcreteHandlerB{
+   + HandleRequest(String request) : void
+}
+ConcreteHandlerA--|> Handler
+ConcreteHandlerB--|> Handler
+
+Class Client
+ Client ..> Handler
+@enduml

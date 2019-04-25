@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+'外观角色
+Class Facade{
+- obj1 : SubSystem01
+- obj2 : SubSystem02
+- obj3 : SubSystem03
++ method() : void
+}
+
+Class SubSystem01{
++ method1() : void
+}
+SubSystem01 --o Facade
+Class SubSystem02{
++ method2() : void
+}
+SubSystem02 --o Facade
+Class SubSystem03{
++ method3() : void
+}
+
+
+SubSystem03 --o Facade
+
+Class Client
+Client ..> Facade : 访问
+@enduml

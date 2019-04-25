@@ -1,0 +1,51 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象访问者
+Abstract Visitor{
+    + visit(ConcreteElementA element) : void
+    + visit(ConcreteElementB element) : void
+}
+
+'具体访问者
+Class ConcreteVisitorA{
+   + visit(ConcreteElementA element) : void
+    + visit(ConcreteElementB element) : void
+}
+Class ConcreteVisitorB{
+   + visit(ConcreteElementA element) : void
+    + visit(ConcreteElementB element) : void
+}
+ConcreteVisitorA --|> Visitor
+ConcreteVisitorB --|> Visitor
+
+'抽象元素
+Abstract Element{
+    + accept(Visitor visitor) : void
+}
+
+'具体元素
+Class ConcreteElementA{
+    + accept(Visitor visitor) : void
+    + operationA() : String
+}
+Class ConcreteElementB{
+    + accept(Visitor visitor) : void
+    + operationB() : String
+}
+ConcreteElementA--|> Element
+ConcreteElementB--|> Element
+
+'对象结构
+Class ObjectStructure{
+    - list: List<Element>
+    + accept(Visitor visitor) : void
+    + add(Element element) : void
+    + remove(Element element) : void
+}
+ObjectStructure o-- Element
+
+Class Client
+Client ..> ObjectStructure
+Client ..> Visitor
+
+@enduml

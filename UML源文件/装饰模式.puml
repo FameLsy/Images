@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象构件
+Abstract Component{
++ operation()
+}
+
+'具体构件
+Class ConcreteComponent{
++ operation()
+}
+
+ConcreteComponent --|> Component
+
+'抽象装饰
+Abstract Decorator{
+    - component : Component
+    + Decorator(Component component)
+    + operation()
+}
+
+Decorator o-- Component
+Decorator --|> Component
+
+'具体装饰
+Class ConcreteDecoratorA{
+        + operation(): void
+        + addFunction()
+}
+
+'具体装饰
+Class ConcreteDecoratorB{
+        + operation(): void
+        + addFunction()
+}
+ConcreteDecoratorA --|>Decorator
+ConcreteDecoratorB --|>Decorator
+@enduml

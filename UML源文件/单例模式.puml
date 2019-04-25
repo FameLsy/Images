@@ -1,0 +1,10 @@
+@startuml
+skinparam classAttributeIconSize 0
+Class SingleTon{
+    - instance: SingleTon
+    + getInstance(): SingleTon
+}
+
+Class Client
+Client..>SingleTon
+@enduml

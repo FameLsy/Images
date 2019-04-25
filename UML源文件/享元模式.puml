@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象享元角色
+Abstract Flyweight{
+ + operation(UnsharedConcreteFlyweight state) : void
+}
+
+'具体享元角色
+Class ConcreteFlyweightA{
+- key : String
++ ConcreteFlyweightA(String key)
++ operation(UnsharedConcreteFlyweight state) : void
+}
+
+Class ConcreteFlyweightB{
+- key : String
++ ConcreteFlyweightB(String key)
++ operation(UnsharedConcreteFlyweight state) : void
+}
+ConcreteFlyweightA --|> Flyweight
+ConcreteFlyweightB --|> Flyweight
+
+'非享元角色
+Class UnsharedConcreteFlyweight{
+    - info : String
+    + setInfo(String info) : void
+    + getInfo(): String
+}
+
+UnsharedConcreteFlyweight --> Flyweight
+
+'享元工厂
+Class FlyweightFactory{
+    - flyweight: HashMap<String, Flyweight>
+    + getFlyweight(String key) : Flyweight
+}
+
+FlyweightFactory o-- Flyweight
+
+Class Client
+Client ..> Flyweight
+Client ..> FlyweightFactory
+@enduml

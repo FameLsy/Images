@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+Class Product{
+   -  partA : String
+   -  partB : String
+   -  partC : String
+
+   +  setPartA(String partA) : void
+   +  setPartB(String partB) : void
+   +  setPartC(String partC) : void
+   +  anotherMethods() : void
+
+}
+
+abstract Builder
+{
+    # Product product
+    + {abstract}  buildPartA() : void
+    + {abstract}  buildPartB() : void
+    + {abstract}  buildPartC() : void
+    +  getInstance() : Product
+}
+
+class ConcreteBuilderA
+{
+    +  buildPartA() : void
+    +  buildPartB() : void
+    +  buildPartC() : void
+}
+
+class ConcreteBuilderB
+{
+    +  buildPartA() : void
+    +  buildPartB() : void
+    +  buildPartC() : void
+}
+
+class Director
+{
+   - Builder builder;
+   + Director(Builder builder)
+   + Product construct()
+}
+Client ..> Product
+Client ..> Builder
+Client ..> Director
+Product --o Builder
+Builder --o Director
+ConcreteBuilderA --|> Builder
+ConcreteBuilderB --|> Builder
+
+@enduml

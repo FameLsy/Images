@@ -1,0 +1,37 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象聚合
+Abstract Aggregate{
++ add(Object obj) : void
++ remove(Object obj) : void
++ getIterator() ; Iterator
+}
+
+'具体聚合
+Class ConcreteAggregate{
+    - list: List<Object>
++ add(Object obj) : void
++ remove(Object obj) : void
++ getIterator() ; Iterator
+}
+
+ConcreteAggregate --|> Aggregate
+ConcreteAggregate <--> ConcreteIterator
+
+'抽象迭代器
+Abstract Iterator{
+    + first(): Object
+    + next() : Object
+    + hasNext() : boolean
+}
+
+'具体迭代器
+Class ConcreteIterator{
+- list : List<Object>
++ ConcreteIterator(List<Object> list)
+    + first(): Object
+    + next() : Object
+    + hasNext() : boolean
+}
+ConcreteIterator--|> Iterator
+@enduml

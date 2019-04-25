@@ -1,0 +1,19 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象类
+abstract AbstractClass{
++ TemplateMethod(): void
++ SpecificMethod(): void
++ abstractMethod1() : void
++ abstractMethod2() : void
+}
+
+Class ConcreteClass{
++ abstractMethod1() : void
++ abstractMethod2() : void
+}
+ConcreteClass--|>AbstractClass
+
+Class Client
+Client ..> AbstractClass
+@enduml

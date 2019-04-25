@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象表达式类
+Abstract AbstractExpression
+{
+    +  interpret(String info) : Object
+}
+'终结符表达式类
+class TerminalExpression
+{
+    +  interpret(String info) :
+}
+TerminalExpression --|> AbstractExpression
+'非终结符表达式类
+class NonterminalExpression
+{
+    - exp1: AbstractExpression
+    -  exp2 : AbstractExpression
+    +  interpret(String info) : Object
+}
+NonterminalExpression o-- AbstractExpression
+NonterminalExpression --|> AbstractExpression
+
+'环境类
+class Context
+{
+    -  exp : AbstractExpression
+    + Context()
+    +  operation(String info):void
+}
+Context o-- AbstractExpression
+
+Class Client
+Client ..>Context
+@enduml

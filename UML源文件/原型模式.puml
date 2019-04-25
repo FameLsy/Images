@@ -1,0 +1,14 @@
+@startuml
+skinparam classAttributeIconSize 0
+Abstract AbstractPrototype{
+ + clone() : RealizeType
+}
+Class RealizeType{
+     + clone() : RealizeType
+}
+
+Class Client
+
+Client ..> RealizeType
+AbstractPrototype <|-- RealizeType
+@enduml

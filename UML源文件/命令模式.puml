@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象命令类
+Abstract Command{
+    + execute() : void
+}
+
+' 具体命令类
+Class ConcreteCommandA{
+    - receiver : ReceiverA
+        + execute() : void
+}
+Class ConcreteCommandB{
+    - receiver : ReceiverB
+        + execute() : void
+}
+ConcreteCommandA --|> Command
+ConcreteCommandB --|> Command
+'接收者
+Class ReceiverA
+ReceiverA --o ConcreteCommandA
+Class ReceiverB
+ReceiverB --o ConcreteCommandB
+
+'调用者
+Class Invoker{
+ - command : Command
+ + Invoker(Command command): void
+ + setCommand(Command command) : void
+ + cell() : void
+}
+
+Invoker o-- Command
+
+Class Client
+Client ..> Command
+Client ..> Invoker
+@enduml

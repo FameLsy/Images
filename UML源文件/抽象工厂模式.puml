@@ -1,0 +1,44 @@
+@startuml
+skinparam classAttributeIconSize 0
+'产品
+  Abstract AbstractProduct
+  Class ConcreteProductA_Type1
+  Class ConcreteProductA_Type2
+  Class ConcreteProductB_Type1
+  Class ConcreteProductB_Type2
+
+'工厂
+  Abstract  AbstractFactory{
+      + newInstanceA() : Product
+      + newInstanceB() : Product
+  }
+  Class ConcreteFactoryA{
+     + newInstanceA() : Product
+     + newInstanceB() : Product
+  }
+  Class ConcreteFactoryB{
+   + newInstanceA() : Product
+   + newInstanceB() : Product
+  }
+
+
+
+'产品实现
+ConcreteProductA_Type1--|>AbstractProduct
+ConcreteProductA_Type2--|>AbstractProduct
+ConcreteProductB_Type1--|>AbstractProduct
+ConcreteProductB_Type2--|>AbstractProduct
+
+'工厂实现
+AbstractFactory<|--ConcreteFactoryA
+AbstractFactory<|--ConcreteFactoryB
+
+ConcreteFactoryA..>ConcreteProductA_Type1: create
+ConcreteFactoryA..>ConcreteProductB_Type1: create
+ConcreteFactoryB..>ConcreteProductA_Type2: create
+ConcreteFactoryB..>ConcreteProductB_Type2: create
+
+
+Class Client
+Client ..> AbstractFactory
+@enduml

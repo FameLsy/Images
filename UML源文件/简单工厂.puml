@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+Class Factory{
+   + {static} newInstance(String param) : Product
+}
+
+
+Class Client
+
+
+package 产品 <<Folder>> {
+  Class ConcreteProductA
+  Class ConcreteProductB
+  Abstract AbstractProduct
+}
+
+
+Client ..> Factory: 根据参数获取实例
+ConcreteProductA --|> AbstractProduct
+ConcreteProductB --|> AbstractProduct
+Factory ..> ConcreteProductA: create
+Factory ..> ConcreteProductB: create
+
+
+
+
+@enduml

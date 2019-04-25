@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象策略类
+Abstract Strategy{
+    + strategyMethod() : void
+}
+
+'具体策略类
+Class ConcreteStrategyA{
+    + strategyMethod() : void
+}
+Class ConcreteStrategyB{
+    + strategyMethod() : void
+}
+ConcreteStrategyA--|> Strategy
+ConcreteStrategyB--|> Strategy
+
+'环境类
+Class Context{
+    - strategy : Strategy
+    + setStrategy() : Strategy
+    + strategyMethod()： void
+}
+
+Context o-- Strategy
+@enduml

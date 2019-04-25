@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象构件
+Abstract Component{
+ + add(Component c) : void
+ + remove(Component c) : void
+ + getChild(int t) : Component
+ + operation() : void
+}
+
+'树叶构件
+Class Leaf{
+ - name : String
+ + Leaf(String name) : void
+  + add(Component c) : void
+  + remove(Component c) : void
+  + getChild(int t) : Component
+  + operation() : void
+
+}
+Leaf --|> Component
+
+'树枝构件
+Class Composite{
+ - children : ArrayList<Component>
+   + add(Component c) : void
+   + remove(Component c) : void
+   + getChild(int t) : Component
+   + operation() : void
+}
+
+Composite --|> Component
+Composite o-- Component
+
+Class Client
+
+Client ..> Component
+ @enduml

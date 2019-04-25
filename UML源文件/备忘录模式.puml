@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+'发起人
+class Originator
+{
+    -  state: String
+   +  setState(String state): void
+    +  getState() : String
+    +  createMemento() : Memento
+    +   restoreMemento(Memento m) : void
+}
+'备忘录
+class Memento
+{
+    -  state : String
+    + Memento(String state)
+    +  setState(String state) : void
+    +  getState() : String
+}
+Memento<-->Originator
+'管理者
+class Caretaker
+{
+    -  memento : Memento
+    +  setMemento(Memento m) : void
+    +  getMemento() : Memento
+}
+Caretaker o-- Memento
+Class Client
+Client ..> Originator
+Client ..> Caretaker
+@enduml

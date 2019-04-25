@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+'抽象中介者
+Abstract Mediator{
+    + register(Colleague colleague) : void
+    + relay(Colleague colleague) : void
+}
+
+'具体中介者
+Class ConcreteMediator{
+- ColleagueS : List<Colleague>
+    + register(Colleague colleague) : void
+    + relay(Colleague colleague) : void
+}
+ConcreteMediator--|> Mediator
+
+'抽象同事类
+Abstract Colleague{
+    # mediator: Mediator
+    + setMedium(Mediator mediator) : void
+    + receive() : void
+    + send() : void
+}
+
+Colleague o-- Mediator
+Colleague --o ConcreteMediator
+
+'具体同事类
+Class ConcreteColleagueA{
+    + receive() : void
+    + send() : void
+}
+Class ConcreteColleagueB{
+    + receive() : void
+    + send() : void
+}
+ConcreteColleagueA--|>Colleague
+ConcreteColleagueB--|>Colleague
+@enduml

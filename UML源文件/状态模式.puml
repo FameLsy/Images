@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+'环境
+Class Context{
+    - state : State
+    + Context()
+    + setState(State state) : void
+    + getState() : State
+    + Handle() : void
+}
+
+' 抽象状态
+Abstract State{
+    + Handle(Context context) : void
+}
+
+State --o Context
+' 具体状态
+Class ConcreteStateA{
+ + Handle(Context context) : void
+}
+Class ConcreteStateB{
+ + Handle(Context context) : void
+}
+ConcreteStateA --|> State
+ConcreteStateB--|> State
+
+Class Client
+Client ..> Context
+@enduml
